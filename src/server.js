@@ -4,9 +4,14 @@ const app = express()
 const port = process.env.PORT | 3000
 const host = process.env.HOST | '0.0.0.0'
 
-app.use(cors())
 
-app.get('/*', (req, res) => {
+const corsOptions = {
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
+
+app.all('/*', (req, res) => {
     console.log({
         headers: req.headers,
         path: req.path,
@@ -14,6 +19,7 @@ app.get('/*', (req, res) => {
         originalUrl: req.originalUrl,
         env: process.env,
     })
+
     res.status(200).send('success')
 })
 
