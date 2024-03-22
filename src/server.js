@@ -18,6 +18,7 @@ app.all('/*', (req, res) => {
         query: req.query,
         originalUrl: req.originalUrl,
         env: process.env,
+        body: req.body
     })
 
     res.status(200).send('success')
